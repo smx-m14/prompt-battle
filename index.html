@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prompt Battle · Monuments del Món</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="topbar"></div>
+  <div style="display:flex;justify-content:center;margin-bottom:6px;"><div class="round-tag" id="roundTag">Cap ronda iniciada</div></div>
+  <form action="" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" onsubmit="return false;">
+
+
+  
+  <label class="mode-picker" for="modeSelect">Modalitat
+    <select id="modeSelect" onchange="changeMode(this.value)">
+      <option value="monuments">Monuments del món</option><option value="dishes">Plats coneguts</option><option value="objects">Objectes quotidians</option><option value="artworks">Obres d'art famoses</option>
+    </select>
+  </label>
+  <main class="stage">
+    <section class="team-card t1"><div class="team-name">Equip 1</div><div class="score" id="score1">0</div><div class="score-btns"><button onclick="updateScore('t1',-1)">−</button><button onclick="updateScore('t1',1)">+</button></div></section>
+    <section class="center-col">
+      <div class="timer-wrap"><svg viewBox="0 0 200 200"><circle class="ring-track" cx="100" cy="100" r="88"></circle><circle class="ring-progress" id="ringProgress" cx="100" cy="100" r="88" stroke-dasharray="552.9" stroke-dashoffset="0"></circle></svg><div class="timer-label"><div class="timer-num" id="timerNum">02:00</div><div class="timer-sub">temps restant</div></div></div>
+      <div class="frame" id="frame"><div class="placeholder"><div class="big-emoji">🏛️</div><div>Prem «Nova ronda» per començar</div></div></div>
+      <div class="monument-name" id="monumentName"></div>
+      <div class="taboo-panel" id="tabooPanel" style="display:none;"><div class="taboo-title">🚫 Paraules tabú - no es poden fer servir ni les paraules, ni derivades, ni traduccions</div><div class="chip-row" id="tabooChips"></div></div>
+      <div class="hints-panel" id="hintsPanel"><div class="hints-title">💡 Pistes de descomposició visual</div><div class="chip-row" id="hintsChips"></div></div>
+    </section>
+    <section class="team-card t2"><div class="team-name">Equip 2</div><div class="score" id="score2">0</div><div class="score-btns"><button onclick="updateScore('t2',-1)">−</button><button onclick="updateScore('t2',1)">+</button></div></section>
+  </main>
+  <nav class="dock"><button class="primary" onclick="nextRound()">🎲 Nova ronda</button><button id="playBtn" onclick="toggleTimer()">▶ Iniciar</button><button onclick="resetTimer()">⟳ Reiniciar temps</button><button id="hintsBtn" onclick="toggleHints()" style="display:none;">💡 Mostrar pistes</button><button onclick="toggleFullscreen()">⛶ Pantalla completa</button><button class="danger" onclick="resetScores()">⚑ Reiniciar marcador</button></nav>
+  <div class="alarm-overlay" id="alarmOverlay"><div class="alarm-box"><div class="big">⏰ TEMPS ESGOTAT!</div><div class="sub">Envieu el vostre prompt ara</div><button onclick="closeAlarm()">D'acord</button></div></div>
+  </form>
+  <script src="script.js"></script>
+</body>
+</html>
+
